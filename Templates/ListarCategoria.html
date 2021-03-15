@@ -1,0 +1,42 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+
+    <p></p>
+    <h1>Categorias Registradas</h1>
+    <p></p>
+
+    <div class="row col-12 justify-content-end mb-2 pro-0">
+    <a class="btn btn-success col-md-3" href="{% url 'guardarCategoria' %}">Registrar Categoria</a>
+    </div>
+    <p></p>
+        {% if mensaje %}
+            <div class="alert alert-success" role="alert">
+            Categoria Eliminada Exitosamente!
+            </div>
+        {% endif %}
+
+    <table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Id_Categoria</th>
+        <th scope="col">Nombre_Categoria</th>
+         <th scope="col">Editar</th>
+         <th scope="col">Eliminar</th>
+    </tr>
+    </thead>
+
+  <tbody>
+    {% for categoria in categorias %}
+    <tr>
+      <th scope="row">{{ categoria.id }} </th>
+      <td>{{ categoria.nombre }}</td>
+        <td><a class = "btn btn-warning" href="{% url 'editarcategoria' categoria.id %}">Editar</a></td>
+        <td><a class = "btn btn-danger" href="{% url 'eliminarcategoria' categoria.id %}">Eliminar </a></td>
+
+    {% endfor %}
+
+  </tbody>
+</table>
+
+{% endblock %}
